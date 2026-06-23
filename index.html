@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIビジネスサポート宮崎｜運輸・警備会社専門 AIエージェントコンサルタント</title>
+  <meta name="description" content="運輸・警備会社の日報→給与計算→請求書→売上集計を一気通貫で自動化。元現場責任者のAIエージェントコンサルタント 榎木茂｜宮崎・都城">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand: #1e7a4a;
+      --brand2: #4fae7a;
+      --light: #e8f5ee;
+      --dark: #1a1a2e;
+      --gray: #f5f5f7;
+      --text: #333;
+      --text2: #666;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); line-height: 1.8; }
+
+    /* ナビ */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--brand);
+      padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 64px;
+    }
+    .nav-logo { font-weight: 900; font-size: 15px; color: var(--brand); }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a { text-decoration: none; color: var(--text2); font-size: 14px; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--brand); }
+    .nav-cta {
+      background: var(--brand); color: #fff; padding: 10px 22px; border-radius: 999px;
+      text-decoration: none; font-size: 14px; font-weight: 700; transition: opacity .2s;
+    }
+    .nav-cta:hover { opacity: .85; }
+
+    /* ヒーロー */
+    .hero {
+      background: linear-gradient(135deg, #04150c 0%, #0e3322 50%, #1e7a4a 100%);
+      color: #fff; padding: 100px 5% 80px; text-align: center; position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 30%, rgba(100,255,180,.15), transparent 60%);
+    }
+    .hero-eyebrow {
+      display: inline-block; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3);
+      border-radius: 999px; padding: 6px 20px; font-size: 13px; font-weight: 700;
+      letter-spacing: .1em; margin-bottom: 28px;
+    }
+    .hero h1 { font-size: clamp(28px, 6vw, 52px); font-weight: 900; line-height: 1.3; margin-bottom: 12px; }
+    .hero h1 span { color: #b8f0d4; }
+    .hero-sub { font-size: clamp(16px, 2.5vw, 20px); color: rgba(255,255,255,.8); margin-bottom: 40px; }
+    .hero-badges { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px; }
+    .hero-badge {
+      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25);
+      border-radius: 8px; padding: 8px 18px; font-size: 14px; font-weight: 700;
+    }
+    .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: #fff; color: var(--brand); padding: 16px 40px; border-radius: 999px;
+      font-size: 16px; font-weight: 900; text-decoration: none; transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 8px 30px rgba(0,0,0,.3);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,.4); }
+    .btn-secondary {
+      border: 2px solid rgba(255,255,255,.5); color: #fff; padding: 14px 32px; border-radius: 999px;
+      font-size: 15px; font-weight: 700; text-decoration: none; transition: background .2s;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,.1); }
+
+    /* 課題セクション */
+    .pain { background: var(--gray); padding: 80px 5%; }
+    .section-label {
+      text-align: center; font-size: 13px; font-weight: 700; color: var(--brand);
+      letter-spacing: .15em; text-transform: uppercase; margin-bottom: 12px;
+    }
+    .section-title { text-align: center; font-size: clamp(22px, 4vw, 34px); font-weight: 900; margin-bottom: 16px; }
+    .section-title span { color: var(--brand); }
+    .section-desc { text-align: center; color: var(--text2); font-size: 16px; margin-bottom: 48px; }
+    .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 900px; margin: 0 auto; }
+    .pain-card {
+      background: #fff; border-radius: 14px; padding: 28px; border-left: 4px solid var(--brand);
+      box-shadow: 0 4px 20px rgba(30,122,74,.08);
+    }
+    .pain-card .icon { font-size: 28px; margin-bottom: 12px; }
+    .pain-card p { font-size: 15px; font-weight: 700; color: var(--dark); }
+
+    /* 解決策：4フェーズ */
+    .solution { padding: 80px 5%; }
+    .phase-flow {
+      display: flex; gap: 0; max-width: 960px; margin: 0 auto 48px; flex-wrap: wrap; justify-content: center;
+    }
+    .phase-item {
+      flex: 1; min-width: 200px; background: var(--light); border-radius: 14px;
+      padding: 28px 20px; text-align: center; position: relative;
+    }
+    .phase-item:not(:last-child)::after {
+      content: '→'; position: absolute; right: -18px; top: 50%; transform: translateY(-50%);
+      font-size: 24px; color: var(--brand); font-weight: 900; z-index: 1;
+    }
+    .phase-num {
+      display: inline-block; background: var(--brand); color: #fff;
+      border-radius: 999px; padding: 4px 14px; font-size: 12px; font-weight: 700; margin-bottom: 10px;
+    }
+    .phase-title { font-size: 15px; font-weight: 900; color: var(--dark); margin-bottom: 8px; }
+    .phase-desc { font-size: 13px; color: var(--text2); }
+    .solution-note {
+      text-align: center; background: var(--brand); color: #fff; border-radius: 14px;
+      padding: 28px; max-width: 700px; margin: 0 auto; font-size: 17px; font-weight: 700;
+    }
+
+    /* 強み */
+    .strength { background: var(--dark); color: #fff; padding: 80px 5%; }
+    .strength .section-title { color: #fff; }
+    .strength .section-label { color: #b8f0d4; }
+    .strength .section-desc { color: rgba(255,255,255,.6); }
+    .strength-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; max-width: 900px; margin: 0 auto; }
+    .strength-card {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 16px; padding: 32px 28px;
+    }
+    .strength-card .num { font-size: 42px; font-weight: 900; color: var(--brand2); margin-bottom: 12px; }
+    .strength-card h3 { font-size: 18px; font-weight: 900; color: #fff; margin-bottom: 12px; }
+    .strength-card p { font-size: 14px; color: rgba(255,255,255,.7); line-height: 1.8; }
+
+    /* 料金 */
+    .pricing { padding: 80px 5%; background: var(--gray); }
+    .pricing-tabs { display: flex; gap: 16px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; }
+    .pricing-tab-label { font-size: 13px; font-weight: 700; color: var(--brand); margin-bottom: 20px; text-align: center; letter-spacing: .1em; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; max-width: 860px; margin: 0 auto 48px; }
+    .pricing-card {
+      background: #fff; border-radius: 16px; padding: 32px 24px; box-shadow: 0 4px 20px rgba(0,0,0,.06);
+      border: 2px solid transparent; transition: border-color .2s, transform .2s;
+    }
+    .pricing-card:hover { border-color: var(--brand); transform: translateY(-4px); }
+    .pricing-card.featured { border-color: var(--brand); position: relative; }
+    .pricing-card.featured::before {
+      content: 'おすすめ'; position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+      background: var(--brand); color: #fff; font-size: 12px; font-weight: 700;
+      padding: 4px 16px; border-radius: 999px;
+    }
+    .plan-name { font-size: 18px; font-weight: 900; color: var(--brand); margin-bottom: 6px; }
+    .plan-phase { font-size: 12px; color: var(--text2); margin-bottom: 16px; }
+    .plan-price { font-size: 13px; color: var(--text2); margin-bottom: 4px; }
+    .plan-price strong { font-size: 28px; font-weight: 900; color: var(--dark); }
+    .plan-price2 { font-size: 13px; color: var(--text2); margin-bottom: 20px; }
+    .plan-price2 strong { font-size: 22px; font-weight: 900; color: var(--dark); }
+    .plan-features { list-style: none; }
+    .plan-features li { font-size: 14px; padding: 6px 0; border-bottom: 1px solid #f0f0f0; color: var(--text); }
+    .plan-features li::before { content: '✓ '; color: var(--brand); font-weight: 700; }
+    .plan-features li.disabled { color: #ccc; }
+    .plan-features li.disabled::before { content: '－ '; color: #ddd; }
+    .support-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; max-width: 860px; margin: 0 auto; }
+    .support-card {
+      background: #fff; border-radius: 14px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    }
+    .support-name { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+    .support-desc { font-size: 13px; color: var(--text2); margin-bottom: 12px; }
+    .support-price { font-size: 20px; font-weight: 900; color: var(--brand); }
+
+    /* プロフィール */
+    .profile { padding: 80px 5%; }
+    .profile-inner {
+      max-width: 860px; margin: 0 auto; display: grid;
+      grid-template-columns: 1fr 2fr; gap: 48px; align-items: start;
+    }
+    .profile-img-box {
+      background: var(--light); border-radius: 20px; aspect-ratio: 1;
+      overflow: hidden;
+    }
+    .profile-img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .profile-name { font-size: 28px; font-weight: 900; color: var(--dark); margin-bottom: 6px; }
+    .profile-title { font-size: 15px; color: var(--brand); font-weight: 700; margin-bottom: 20px; }
+    .profile-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+    .profile-tag {
+      background: var(--light); border-radius: 6px; padding: 4px 12px;
+      font-size: 12px; font-weight: 700; color: var(--brand);
+    }
+    .profile-text { font-size: 15px; color: var(--text); line-height: 1.9; }
+
+    /* 導入フロー */
+    .flow { background: var(--gray); padding: 80px 5%; }
+    .flow-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; max-width: 900px; margin: 0 auto; }
+    .flow-step { text-align: center; }
+    .flow-num {
+      width: 52px; height: 52px; background: var(--brand); color: #fff; border-radius: 50%;
+      font-size: 20px; font-weight: 900; display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 12px;
+    }
+    .flow-title { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+    .flow-desc { font-size: 13px; color: var(--text2); }
+
+    /* CTA */
+    .cta {
+      background: linear-gradient(135deg, #1e7a4a, #0e3322);
+      color: #fff; padding: 80px 5%; text-align: center;
+    }
+    .cta h2 { font-size: clamp(22px, 4vw, 36px); font-weight: 900; margin-bottom: 12px; }
+    .cta p { font-size: 16px; color: rgba(255,255,255,.8); margin-bottom: 40px; }
+    .cta-contact { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
+    .cta-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .cta-item .label { font-size: 12px; color: rgba(255,255,255,.6); }
+    .cta-item .value { font-size: 18px; font-weight: 700; color: #fff; }
+
+    /* フッター */
+    footer {
+      background: var(--dark); color: rgba(255,255,255,.5); text-align: center;
+      padding: 24px 5%; font-size: 13px;
+    }
+
+    /* レスポンシブ */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .phase-item:not(:last-child)::after { display: none; }
+      .profile-inner { grid-template-columns: 1fr; }
+      .profile-img-box { max-width: 160px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ナビ -->
+<nav>
+  <div class="nav-logo">AIビジネスサポート宮崎</div>
+  <div class="nav-links">
+    <a href="#pain">課題</a>
+    <a href="#solution">自動化の流れ</a>
+    <a href="#pricing">料金</a>
+    <a href="#profile">プロフィール</a>
+  </div>
+  <a href="#cta" class="nav-cta">無料相談する</a>
+</nav>
+
+<!-- ヒーロー -->
+<section class="hero">
+  <div class="hero-eyebrow">運輸・警備会社専門　AIエージェントコンサルタント</div>
+  <h1>その日報、<span>まだ手書きですか？</span></h1>
+  <p class="hero-sub">日報 → 給与計算 → 請求書 → 売上集計　すべて自動化します</p>
+  <div class="hero-badges">
+    <span class="hero-badge">元運輸会社 運行管理者</span>
+    <span class="hero-badge">元警備会社 施設警備</span>
+    <span class="hero-badge">宮崎・都城 地元密着</span>
+    <span class="hero-badge">初回相談 無料</span>
+  </div>
+  <div class="hero-btns">
+    <a href="#cta" class="btn-primary">無料相談（30分）を予約する</a>
+    <a href="#solution" class="btn-secondary">自動化の流れを見る</a>
+  </div>
+</section>
+
+<!-- 課題 -->
+<section class="pain" id="pain">
+  <div class="section-label">PROBLEM</div>
+  <h2 class="section-title">こんな<span>課題</span>、抱えていませんか？</h2>
+  <p class="section-desc">運輸・警備会社でよく聞かれるお悩みです</p>
+  <div class="pain-grid">
+    <div class="pain-card">
+      <div class="icon">📋</div>
+      <p>毎日の日報集計に1〜2時間かかっている</p>
+    </div>
+    <div class="pain-card">
+      <div class="icon">💴</div>
+      <p>給与計算を手作業でやっていてミスが怖い</p>
+    </div>
+    <div class="pain-card">
+      <div class="icon">📄</div>
+      <p>請求書をExcelで一枚一枚作っていて月末が大変</p>
+    </div>
+    <div class="pain-card">
+      <div class="icon">📊</div>
+      <p>売上がいくらか、すぐに確認できない</p>
+    </div>
+    <div class="pain-card">
+      <div class="icon">💻</div>
+      <p>ITツールを使いたいが何から手をつければいいかわからない</p>
+    </div>
+    <div class="pain-card">
+      <div class="icon">🔧</div>
+      <p>以前システムを入れたが定着しなかった</p>
+    </div>
+  </div>
+</section>
+
+<!-- 解決策 -->
+<section class="solution" id="solution">
+  <div class="section-label">SOLUTION</div>
+  <h2 class="section-title">4つのフェーズで<span>一気通貫</span>自動化</h2>
+  <p class="section-desc">まずは1フェーズだけでもOK。小さく始めて段階的に広げます</p>
+  <div class="phase-flow">
+    <div class="phase-item">
+      <div class="phase-num">Phase 1</div>
+      <div class="phase-title">紙日報<br>デジタル化</div>
+      <div class="phase-desc">スマホ入力で<br>紙をゼロに</div>
+    </div>
+    <div class="phase-item">
+      <div class="phase-num">Phase 2</div>
+      <div class="phase-title">給与計算<br>自動化</div>
+      <div class="phase-desc">手計算ミスを<br>ゼロに</div>
+    </div>
+    <div class="phase-item">
+      <div class="phase-num">Phase 3</div>
+      <div class="phase-title">請求書<br>自動生成</div>
+      <div class="phase-desc">PDF一括<br>自動出力</div>
+    </div>
+    <div class="phase-item">
+      <div class="phase-num">Phase 4</div>
+      <div class="phase-title">売上集計<br>ダッシュボード</div>
+      <div class="phase-desc">リアルタイムで<br>売上を把握</div>
+    </div>
+  </div>
+  <div class="solution-note">
+    「作って終わり」ではありません。<br>
+    現場に定着するまで月1回訪問・研修・不具合対応で伴走します。
+  </div>
+</section>
+
+<!-- 強み -->
+<section class="strength" id="strength">
+  <div class="section-label">WHY US</div>
+  <h2 class="section-title">選ばれる3つの理由</h2>
+  <p class="section-desc">現場経験者だからこそできる支援があります</p>
+  <div class="strength-grid">
+    <div class="strength-card">
+      <div class="num">01</div>
+      <h3>現場を知っている</h3>
+      <p>運輸会社での運行管理・倉庫管理・営業、警備会社での施設警備を経験。「現場を知らないコンサル」には見えない課題を見抜きます。</p>
+    </div>
+    <div class="strength-card">
+      <div class="num">02</div>
+      <h3>定着まで伴走する</h3>
+      <p>月1回の訪問・研修指導会・不具合対応を継続。スタッフが「これ簡単！」と言えるまでサポートします。</p>
+    </div>
+    <div class="strength-card">
+      <div class="num">03</div>
+      <h3>小さく始められる</h3>
+      <p>まず日報だけでもOK。Phase 1から始めて、慣れたら給与・請求書と広げていけます。予算に合わせた設計をします。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 料金 -->
+<section class="pricing" id="pricing">
+  <div class="section-label">PRICING</div>
+  <h2 class="section-title">料金プラン</h2>
+  <p class="section-desc">ヒアリング後に正式見積もりします。下記は目安です</p>
+
+  <div class="pricing-tab-label">▼ 導入費用（初期一括）</div>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="plan-name">スターター</div>
+      <div class="plan-phase">Phase 1のみ｜日報デジタル化</div>
+      <div class="plan-price">小規模（〜30名）<strong>10万円〜</strong></div>
+      <div class="plan-price2">中規模（30〜100名）<strong>15万円〜</strong></div>
+      <ul class="plan-features">
+        <li>日報デジタル化</li>
+        <li>スタッフ操作研修</li>
+        <li>1ヶ月サポート付き</li>
+        <li class="disabled">給与計算自動化</li>
+        <li class="disabled">請求書自動生成</li>
+      </ul>
+    </div>
+    <div class="pricing-card featured">
+      <div class="plan-name">スタンダード</div>
+      <div class="plan-phase">Phase 1〜2｜＋給与計算自動化</div>
+      <div class="plan-price">小規模（〜30名）<strong>25万円〜</strong></div>
+      <div class="plan-price2">中規模（30〜100名）<strong>35万円〜</strong></div>
+      <ul class="plan-features">
+        <li>日報デジタル化</li>
+        <li>給与計算自動化</li>
+        <li>スタッフ操作研修</li>
+        <li>2ヶ月サポート付き</li>
+        <li class="disabled">請求書自動生成</li>
+      </ul>
+    </div>
+    <div class="pricing-card">
+      <div class="plan-name">フルパック</div>
+      <div class="plan-phase">Phase 1〜4｜全工程一気通貫</div>
+      <div class="plan-price">小規模（〜30名）<strong>45万円〜</strong></div>
+      <div class="plan-price2">中規模（30〜100名）<strong>65万円〜</strong></div>
+      <ul class="plan-features">
+        <li>日報デジタル化</li>
+        <li>給与計算自動化</li>
+        <li>請求書自動生成</li>
+        <li>売上ダッシュボード</li>
+        <li>3ヶ月サポート付き</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pricing-tab-label">▼ 月額サポート費用（継続）</div>
+  <div class="support-grid">
+    <div class="support-card">
+      <div class="support-name">ライトサポート</div>
+      <div class="support-desc">不具合対応のみ（メール・チャット）</div>
+      <div class="support-price">1万円／月</div>
+    </div>
+    <div class="support-card">
+      <div class="support-name">スタンダードサポート</div>
+      <div class="support-desc">不具合対応＋月1回オンライン相談</div>
+      <div class="support-price">3万円／月</div>
+    </div>
+    <div class="support-card">
+      <div class="support-name">プレミアムサポート</div>
+      <div class="support-desc">不具合対応＋月1回訪問＋研修指導会（年2回）</div>
+      <div class="support-price">5万円／月</div>
+    </div>
+  </div>
+</section>
+
+<!-- プロフィール -->
+<section class="profile" id="profile">
+  <div class="section-label">PROFILE</div>
+  <h2 class="section-title" style="margin-bottom:48px;">コンサルタント紹介</h2>
+  <div class="profile-inner">
+    <div class="profile-img-box"><img src="profile.jpg" alt="榎木茂"></div>
+    <div>
+      <div class="profile-name">榎木　茂</div>
+      <div class="profile-title">AIビジネスサポート宮崎　代表<br>運輸・警備会社専門　AIエージェントコンサルタント</div>
+      <div class="profile-tags">
+        <span class="profile-tag">元運行管理者</span>
+        <span class="profile-tag">元倉庫管理責任者</span>
+        <span class="profile-tag">元施設警備</span>
+        <span class="profile-tag">宮崎・都城 地元密着</span>
+      </div>
+      <p class="profile-text">
+        運輸会社での運行管理・倉庫管理・営業、警備会社での施設警備、接客業など現場の最前線を長年経験してきました。<br><br>
+        「なぜこんなに手作業が多いのか」「これ絶対自動化できる」——そう思い続けて行動に移したのが今の仕事です。<br><br>
+        <strong>現場を知らないコンサルには見えない課題を見抜き、日報→給与計算→請求書→売上集計を一気通貫で自動化する。</strong><br><br>
+        作って終わりではなく、現場に定着するまで伴走するのが私のスタイルです。<br>
+        宮崎・都城を拠点に、地元の運輸・警備会社の「手作業」をゼロにすることを使命としています。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 導入フロー -->
+<section class="flow" id="flow">
+  <div class="section-label">FLOW</div>
+  <h2 class="section-title">導入の流れ</h2>
+  <p class="section-desc">相談から稼働まで最短1ヶ月</p>
+  <div class="flow-steps">
+    <div class="flow-step">
+      <div class="flow-num">1</div>
+      <div class="flow-title">無料相談（30分）</div>
+      <div class="flow-desc">現状と悩みをお聞きします。費用ゼロ</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">2</div>
+      <div class="flow-title">業務ヒアリング</div>
+      <div class="flow-desc">業務フローを整理し自動化できる箇所を特定</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">3</div>
+      <div class="flow-title">設計・お見積もり</div>
+      <div class="flow-desc">自動化設計書と費用見積もりをご提示</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">4</div>
+      <div class="flow-title">構築・テスト</div>
+      <div class="flow-desc">AIエージェントを構築・動作確認</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">5</div>
+      <div class="flow-title">研修・稼働</div>
+      <div class="flow-desc">現場スタッフへの操作説明・本番稼働</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">6</div>
+      <div class="flow-title">定着サポート</div>
+      <div class="flow-desc">月次訪問・改善・フォローアップ継続</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="cta">
+  <h2>まずは無料相談（30分）から</h2>
+  <p>「うちに使えるか？」「何から手をつければいい？」<br>そんな段階からお気軽にご連絡ください。</p>
+  <div class="cta-contact">
+    <div class="cta-item">
+      <span class="label">電話</span>
+      <span class="value">080-4039-1726</span>
+    </div>
+    <div class="cta-item">
+      <span class="label">メール</span>
+      <span class="value">exel1726e@yahoo.co.jp</span>
+    </div>
+    <div class="cta-item">
+      <span class="label">所在地</span>
+      <span class="value">宮崎県都城市高城町</span>
+    </div>
+  </div>
+  <a href="mailto:exel1726e@yahoo.co.jp" class="btn-primary" style="display:inline-block;">メールで相談する（無料）</a>
+</section>
+
+<footer>
+  <p>© 2026 AIビジネスサポート宮崎　榎木茂｜運輸・警備会社専門 AIエージェントコンサルタント</p>
+</footer>
+
+</body>
+</html>
